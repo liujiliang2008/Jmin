@@ -4,7 +4,7 @@ A lightweight Java Development Kit, which contains multiple independent framewor
 
 
 
-一个轻量级Java开发工具包，其中包含多个独立的框架和工具，如:Ioc, Jdbc, Job,Log, Event, Socket等等。
+一套轻量级Java开发工具包，其中包含多个独立的框架和工具，如:Ioc, Jdbc, Job,Log, Event, Socket等等。
 
 
 
