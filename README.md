@@ -1,9 +1,14 @@
 Jmin
 ====
+A lightweight Java Development Kit, which contains multiple independent frameworks and tools, such as: Ioc, Jdbc, Job, Event, socket, and the developer's code only depend their interfaces
 
-Java轻量级开发平台,内置了一些各自独立,互不依赖的子框架,如ioc,orm,job,event等框架
 
 
-由于还不熟悉操作Github,下面为临时下载地址
+一个轻量级Java开发工具包，其中包含多个独立的框架和工具，如:Ioc, Jdbc, Job,Log, Event, Socket等等。
 
-http://pan.baidu.com/share/home?uk=2218126399
+
+
+
+
+
+
