@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-mapping>
+	<datasource ID="hsql">
+		<property name="jdbc.driver">org.hsqldb.jdbcDriver</property>
+		<property name="jdbc.url">jdbc:hsqldb:hsql://localhost</property>
+		<property name="jdbc.user">sa</property>
+		<property name="jdbc.password"></property>
+	
+		<property name="jdbc.pool.size">50</property>
+		<property name="jdbc.pool.timeout">180000</property>
+		<property name="jdbc.sql.cacheSize">1000</property>
+		<property name="jdbc.sql.dialect">30</property>
+		<property name="jdbc.update.batchSize">30</property>
+		<property name="jdbc.query.fetchSize">30</property>
+	  
+		<property name="transaction.jta.name">java:/comp/datasource/oracleTest</property>
+		<property name="transaction.jta.factory">weblogic.jndi.WLInitialContextFactory</property>
+		<property name="transaction.jta.provider">I3://192.168.10.1:7001</property>
+		<property name="transaction.jta.principal">weblogic</property>
+		<property name="transaction.jta.credentials">weblogic</property>
+		<property name="transaction.isolation">TRANSACTION_READ_COMMITTED</property>
+	
+		<mapping resource="com/amigo/pojo/User.hbm.xml" />
+		<mapping resource="com/amigo/pojo/Org.hbm.xml" />
+	</datasource>
+	<jdbc-types>
+	 <type code ="23" name="Varchar"/>
+	 <type code ="21" name="Char"/>
+	</jdbc-types>
+	<persisters>
+	  <persister javaType ="int"  jdbcType="varchar"  class="xxx.xxx.xxx"/>
+	  <persister javaType ="int"  jdbcType="varchar"  class="xxx.xxx.xxx"/>
+	</persisters>
+    <converters>
+	  <converter javaType ="int" class="xxx.xxx.xxx"/>
+	  <converter javaType ="int" class="xxx.xxx.xxx"/>
+	</converters>
+</sql-mapping>
+

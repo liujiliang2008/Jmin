@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<filter>
+     <filter-name>daoFilter</filter-name>
+     <filter-class>org.jmin.app.web.DaoWebRequestFilter</filter-class>
+    </filter>
+	 <filter-mapping>
+       <filter-name>daoFilter</filter-name>
+	   <url-pattern>/daoFilter</url-pattern>
+    </filter-mapping>
+	 <listener>
+        <listener-class>org.jmin.app.web.DaoWebSessionListener</listener-class>
+    </listener>
+	<servlet>
+		<servlet-name>WebBeanContextServlet</servlet-name>
+		<servlet-class>org.jmin.app.web.WebBeanContextLoader</servlet-class>
+		<init-param>
+			<param-name>contextFile</param-name>
+			<param-value>logic.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>daoTemplateId</param-name>
+			<param-value>DaoTemplate</param-value>
+		</init-param>
+	    <init-param>
+			<param-name>jobSchedulerId</param-name>
+			<param-value>JobScheduler</param-value>
+		</init-param>
+		<init-param>
+			<param-name>eventCenterId</param-name>
+			<param-value>EventCenter</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	 <servlet-mapping>
+		<servlet-name>WebBeanContextServlet</servlet-name>
+		<url-pattern>/WebBeanContextServlet</url-pattern>
+	</servlet-mapping>
+</web-app>

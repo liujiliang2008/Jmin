@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Jmin" default="fullDone">
+	<property name="project.name"      value="jmin" />
+	<property name="project.version"   value="1.0" />
+	<property name="project.encoding"  value="UTF-8" />
+
+	<!--定义路径映射-->
+	<property name="base.dir"          value="." />
+	<property name="src.dir"           value="${base.dir}/src" />
+	<property name="lib.dir"           value="${base.dir}/lib" />
+	<property name="bin.dir"           value="${base.dir}/bin" />
+	<property name="project.bak.dir"   value="${base.dir}/../project-bak"/>
+
+	<property name="project.ewos.dir"   value="${base.dir}/../ewos"/>
+	<property name="project.code.dir"   value="${base.dir}/../code"/>
+	
+	<!--判断工程备份目录是否存在-->
+	<condition property="source_bak_exist">   
+	   <and>   
+	     <available file="${project.bak.dir}" type="dir"/>   
+	   </and>   
+	</condition>
+	<!--判断Ewos工程是否存在-->
+	<condition property="project_ewos_exist">   
+	   <and>   
+	     <available file="${project.ewos.dir}" type="dir"/>   
+	   </and>   
+	</condition> 
+	<!--判断Code工程是否存在-->
+	<condition property="project_code_exist">   
+	   <and>   
+	     <available file="${project.code.dir}" type="dir"/>   
+	   </and>   
+	</condition> 
+	
+	<!--定义路径映射-->
+	<path id="classPath">
+		<pathelement path="${java.class.path}" />
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${bin.dir}">
+			<include name="**/*.class" />
+		</fileset>
+	</path>
+
+	<!--初始化流程-->
+	<target name="init">
+		<delete dir="${bin.dir}" />
+		<mkdir dir="${bin.dir}" />
+	</target>
+
+	<!--编译所有代码-->
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" target="1.5" encoding="${project.encoding}" destdir="${bin.dir}" nowarn="on" 
+		    debug="off" optimize="on" deprecation="on" fork="true"  memoryMaximumSize="128m">
+			<classpath refid="classPath" />          
+		</javac>
+	</target>
+
+	<!--拷贝文件到bin文件夹中-->
+	<target name="copyres" depends="compile">
+		<copy todir="${bin.dir}">
+			<fileset dir="${src.dir}">
+				<include name="*" />
+				<include name="**/*" />
+				<exclude name="**/*.bak" />
+				<exclude name="**/test/**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!--把项目的class文件打包生成jar文件-->
+	<target name="makeJar" depends="copyres">
+		<delete dir="${base.dir}/${project.name}.jar" />
+		<jar jarfile="${base.dir}/${project.name}.jar">
+			<fileset dir="${bin.dir}">
+				<include name="*/*" />
+				<include name="**/*" />
+				<exclude name="**/test/**" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<!--混淆编译后Jar -->
+	<target name="obfuscate" depends="makeJar">
+	  <taskdef resource="proguard/ant/task.properties" classpath="${lib.dir}/proguard.jar" />
+	   <proguard optimize="true">
+	 	<injar  file="${base.dir}/${project.name}.jar" />
+	 	<outjar file="${base.dir}/${project.name}.jar" />
+        <libraryjar file="${java.home}/lib/rt.jar">  
+           <fileset dir="${base.dir}">  
+              <include name="lib/*.jar" />  
+           </fileset>  
+        </libraryjar>
+        <keepattribute name="LineNumberTable" />  
+        <keepattribute name="Deprecated" />  
+        <keepattribute name="*Annotation*" />  
+        <keepattribute name="Exceptions" />  
+        <keepattribute name="Signature" />  
+        <keep>  
+           <field access="public protected" />  
+           <method access="public protected" />  
+        </keep>  
+	   </proguard>
+     </target>
+	 
+	
+	<!-- 拷贝混淆后的Jar包到Code工程 -->
+	<target name="copyJarsToCodeProject" depends="makeJar" if="project_code_exist">
+	    <copy todir="${project.code.dir}/src/org/jmin/gen/copyfile/WebRoot/WEB-INF/lib">
+			<fileset dir="${base.dir}">
+				<include name="${project.name}.jar" />
+			</fileset>
+	    </copy>
+	</target> 
+	
+    <!-- 拷贝混淆后的Jar包到Ewos工程-->
+	<target name="copyJarsToEwosProject" depends="makeJar" if="project_ewos_exist"> 
+	  <copy todir="${project.ewos.dir}/WebRoot/WEB-INF/lib">
+		<fileset dir="${base.dir}">
+			<include name="${project.name}.jar" />
+		</fileset>
+		</copy>
+	    <ant antfile="build.xml" dir="${project.ewos.dir}" inheritall="false" inheritrefs="false"/> 
+	</target>
+	
+	<!-- 备份当前代码 -->
+	<target name="bakupSource" depends="compile" if="source_bak_exist">
+	  <zip basedir="${base.dir}" destfile="${project.bak.dir}/${project.name}_src.zip"
+	  	includes="build.xml,Jmin-Ioc.doc,src/**,lib/**">
+	  </zip>
+	</target>
+	
+	<!-- 最后清理Jar和输出的classes -->
+	<target name="fullDone" depends="copyJarsToCodeProject,copyJarsToEwosProject,bakupSource">
+		<delete dir="${bin.dir}"/>
+		<delete file="${base.dir}/${project.name}.jar" />
+	</target>
+</project>

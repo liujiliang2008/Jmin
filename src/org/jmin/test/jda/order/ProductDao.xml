@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <statement space ="product">
+ 	 <insert id ="insert" parameterClass="org.jmin.test.jda.order.Product">
+		<![CDATA[insert into Product(productNo,productName,productDesc,productType,productSize,productColor)
+		values(#productNo#,#productName#,#productDesc#,#productType#,#productSize#,#productColor#)]]>
+	 </insert>
+	 <select id ="selectOne" parameterClass="String" resultClass="org.jmin.test.jda.order.Product">
+		<![CDATA[select * from Product where productNo=#productNo#]]>
+	 </select>
+ </statement>

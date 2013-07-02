@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<statement space ="user">
+		<class alias="user"    type="org.jmin.test.User"/>
+		<class alias="school"  type="org.jmin.test.School"/>
+		<class alias="room"    type="org.jmin.test.Room"/>
+		
+		<insert ID ="InsertUser" parameterType="user">
+			<![CDATA[insert into User values(#{name},#{sex})]]>
+		</insert>
+		
+		<update ID ="UpdateUser" parameterType="user">
+			<![CDATA[update User set sex=#{sex} where name =#{name}]]>
+		</update>
+	
+		<delete ID ="DeleteUser" parameterType="user">
+			<![CDATA[delete from User where name =#{name}]]>
+		</delete>
+		
+		<select ID ="DeleteUser" parameterType="user" resultType="user">
+			<![CDATA[select * from user where where name =#{name}]]>
+		</select>
+	</statement>

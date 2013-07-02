@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <statement space ="cust">
+ 
+ 	 <insert id ="insert" parameterClass="org.jmin.test.jda.order.Cust">
+		<![CDATA[insert into Cust(custNo,name,gender,phone,mobile,address)values(#custNo#,#name#,#gender#,#phone#,#mobile#,#address#)]]>
+	 </insert>
+	 <select id ="selectOne" parameterClass="String" resultClass="org.jmin.test.jda.order.Cust">
+		<![CDATA[select * from Cust where custNo=#custNo#]]>
+	 </select>
+ </statement>

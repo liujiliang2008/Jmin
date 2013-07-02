@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+ <bean id="EventCenter">
+  <class>org.jmin.jec.impl.xml.EventCenterBean</class>
+  <property name="daemon" value="true"/>
+  <property name="eventTypeList">
+   <list>
+    <item ref="event1"/>
+    <item ref="event2"/>
+    <item ref="event3"/>
+   </list>
+  </property>
+ </bean>
+
+ <bean id="event1">
+  <class>org.jmin.jec.impl.xml.EventBean</class>
+  <property name="className" value="org.jmin.test.jec.NameEvent1"/>
+  <property name="processorList">
+   <list>
+    <item ref="processor1"/>
+    <item ref="processor2"/>
+   </list>
+  </property>
+ </bean>
+ <bean id="event2">
+  <class>org.jmin.jec.impl.xml.EventBean</class>
+  <property name="className" value="org.jmin.test.jec.NameEvent2" />
+  <property name="processorList">
+   <list>
+    <item ref="processor1"/>
+    <item ref="processor2"/>
+   </list>
+  </property>
+ </bean>
+ <bean id="event3">
+  <class>org.jmin.jec.impl.xml.EventBean</class>
+  <property name="className"    value="org.jmin.test.jec.NameEvent3" />
+  <property name="processorList">
+   <list>
+    <item ref="processor1"/>
+    <item ref="processor2"/>
+   </list>
+  </property>
+ </bean>
+
+
+ <bean id="processor1">
+  <class>org.jmin.jec.impl.xml.ProcessorBean</class>
+  <property name="name"       value="processor1"/>
+  <property name="className"  value="org.jmin.test.jec.NameEventProcessor1" />
+ </bean>
+ <bean id="processor2">
+  <class>org.jmin.jec.impl.xml.ProcessorBean</class>
+  <property name="name"       value="processor2"/>
+  <property name="className"  value="org.jmin.test.jec.NameEventProcessor2" />
+ </bean>
+  
+</beans>

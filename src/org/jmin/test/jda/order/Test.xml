@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-mapping>
+	<datasource>
+		<property name="jdbc.driver">sun.jdbc.odbc.JdbcOdbcDriver</property>
+		<property name="jdbc.url">jdbc:odbc:Driver={MicroSoft Access Driver (*.mdb)};DBQ=D:\dev\projects\jmin\src\org\jmin\test\jda\test.mdb</property>
+		<property name="jdbc.user"></property>
+		<property name="jdbc.password"></property>
+		
+		<property name="connection.poolSize">30</property>
+		<property name="connection.maxIdleTime">180000</property>
+		<property name="connection.maxWaitTime">180000</property>
+		<property name="connection.statement.cacheSize">10</property>
+		<property name="connection.statement.batchSize">30</property>
+		<property name="query.resultset.fetchSize">10</property>
+		<property name="transaction.open">false</property>
+		<property name="transaction.isolation">TRANSACTION_READ_COMMITTED</property>
+		
+		<mapping resource="org/jmin/test/jda/order/CustDao.xml"/>
+		<mapping resource="org/jmin/test/jda/order/ProductDao.xml"/>
+		<mapping resource="org/jmin/test/jda/order/OrderDao.xml"/>
+		<mapping resource="org/jmin/test/jda/order/OrderItemDao.xml"/>
+	</datasource>
+</sql-mapping>
+

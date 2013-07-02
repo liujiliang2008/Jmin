@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<beans>
+ <include file="classpath:org/jmin/test/ioc/include/pojo2.xml"/>
+ <bean id ="Bean1" class="org.jmin.test.ioc.include.object.Computer">
+ 	 <property name="keyBoard" ref="keyBoard"/>
+ 	 <property name="monitor"  ref="monitor"/>
+ </bean>
+</beans>

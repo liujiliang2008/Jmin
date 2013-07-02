@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<bean id="application" >
+		<class>org.jmin.gui.GuiDefinition</class>
+		<property name="applicationName" value="#application.name"/>
+		<property name="applicationIconName" value="applicationIcon.gif"/>
+		<property name="backgroundImageName" value="background.jpg"/>
+		<property name="applicationResourcePath" value="/org/jmin/test/swing/resource"/>
+		<property name="menuList">
+			<list>
+				<item ref="dictionary"/>
+				<item ref="tools"/>
+			</list>
+		</property>
+		<property name="toolbarList">
+			<list>
+				<item ref="changePassword"/>
+				<item ref="exit"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ##################  menu items   ################ -->
+	<bean id="dictionary" >
+		<class>org.jmin.gui.definition.MenuDefinition</class>
+		<property name="name" value="#menu.dictionary"/>
+		<property name="iconName" value="dictionary.gif"/>
+		<property name="mnemonic" value="D"/>
+		<property name="itemList">
+			<list>
+				<item ref="factory"/>
+				<item ref="department"/>
+				<item ref="color"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="tools" >
+		<class>org.jmin.gui.definition.MenuDefinition</class>
+		<property name="name" value="#menu.tools"/>
+		<property name="iconName" value="tools.gif"/>
+		<property name="mnemonic" value="T"/>
+		<property name="itemList">
+			<list>
+				<item ref="calculator"/>
+				<item ref="calendar"/>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- ##################  Click item(include menu item and tools bar item)   ################ -->
+	<bean id="factory" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#menu.dictionary.factory"/>
+		<property name="iconName" value="factory.gif"/>
+		<property name="guiView" ref="factoryView"/>
+	</bean>
+	<bean id="department" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#menu.dictionary.department"/>
+		<property name="iconName" value="info.png"/>
+		<property name="guiView" ref="departmentView"/>
+	</bean>
+	<bean id="color" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#menu.dictionary.color"/>
+		<property name="iconName" value="info.png"/>
+		<property name="guiView" ref="colorView"/>
+	</bean>
+	<bean id="changePassword" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#toolbarList.changePassword"/>
+		<property name="iconName" value="password.gif"/>
+		<property name="guiView" ref="changePasswordView"/>
+	</bean>
+	<bean id="exit" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#application.exit"/>
+		<property name="iconName" value="exit.gif"/>
+		<property name="actionListener" 
+			class="org.jmin.gui.command.ExitCommand"/>
+	</bean>
+	<bean id="calculator" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#menu.tools.calculator"/>
+		<property name="iconName" value="calculator.gif"/>
+ 
+		<property name="guiView" ref="calculatorView"/>
+	</bean>
+	<bean id="calendar" >
+		<class>org.jmin.gui.definition.ItemDefinition</class>
+		<property name="name" value="#menu.tools.calendar"/>
+		<property name="iconName" value="calendar.gif"/>
+		<property name="guiView" ref="calendarView"/>
+	</bean>
+	
+	<!-- ##################  view items   ################ -->
+	<bean id="changePasswordView" >
+		<class>org.jmin.test.swing.gui.ColorView</class>
+		<property name="name" value="#toolbarList.changePassword"/>
+	</bean>
+	<bean id="factoryView" >
+		<class>org.jmin.test.swing.gui.FactoryView</class>
+		<property name="name" value="#menu.dictionary.factory"/>
+	</bean>
+	<bean id="departmentView" >
+		<class>org.jmin.test.swing.gui.DepartmentView</class>
+		<property name="name" value="#menu.dictionary.department"/>
+	</bean>
+	<bean id="colorView" >
+		<class>org.jmin.test.swing.gui.ColorView</class>
+		<property name="name" value="#menu.dictionary.color"/>
+	</bean>
+	<!-- ##################  System Tools   ################ -->
+	<bean id="calculatorView" >
+		<class>org.jmin.test.swing.accessory.Calculator</class>
+		<property name="name" value="#menu.tools.calculator"/>
+	</bean>
+	<bean id="calendarView" >
+		<class>org.jmin.test.swing.accessory.JCalendar</class>
+		<property name="name" value="#menu.tools.calendar"/>
+	</bean>
+	<!-- ##################  proxy item   ################ -->
+</beans>

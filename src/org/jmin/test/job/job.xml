@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+ <bean id="JobScheduler">
+  <class>org.jmin.job.xml.JobScheduleDefinition</class>
+  <property name="daemon" value="false"/>
+  <property name="jobDefinitionList">
+   <list>
+    <item ref="Job1"/>
+    <item ref="Job2"/>
+    <item ref="Job3"/>
+    <item ref="Job4"/>
+    <item ref="Job5"/>
+    <item ref="Job6"/>
+    <item ref="Job7"/>
+    <item ref="Job8"/>
+    <item ref="Job9"/>
+   </list>
+  </property>
+ </bean>
+
+ <bean id="Job1">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Second Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="10" />
+  <property name="intervalTimeUnit" value="Second" />
+  <property name="supportMonthLastDay" value="true" />
+ </bean>
+
+ <bean id="Job2">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Minute Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Minute" />
+ </bean>
+
+ <bean id="Job3">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Hour Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Hour" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+
+ <bean id="Job4">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Day Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Day" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+
+ <bean id="Job5">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Week Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Week" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+
+  <bean id="Job6">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Month Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Month" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+
+
+  <bean id="Job7">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Quarter Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Quarter" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+
+ <bean id="Job8">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Half Year Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Half_Year" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+
+
+ <bean id="Job9">
+  <class>org.jmin.job.xml.JobDefinition</class>
+  <property name="name" value="Year Job" />
+  <property name="className" value="org.jmin.test.job.TimeJob" />
+  <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss" />
+  <property name="firstRunDateTime" value="2009-01-01 00:00:00" />
+  <property name="interval" value="1" />
+  <property name="intervalTimeUnit" value="Year" />
+  <!-- <property name="terminateDateTime" value="2010-03-09 20:15:00" />-->
+ </bean>
+</beans>

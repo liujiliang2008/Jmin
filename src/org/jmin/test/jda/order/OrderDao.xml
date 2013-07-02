@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <statement space ="order">
+ 	 <insert id ="insert" parameterClass="org.jmin.test.jda.order.Order">
+		<![CDATA[insert into Order_HD(orderNo,custNo,openDate)values(#orderNo#,#custNo#,#openDate#)]]>
+	 </insert>
+	 <select id ="selectOne" parameterClass="String" resultClass="org.jmin.test.jda.order.Order">
+		<![CDATA[select * from Order_HD where orderNo=#orderNo#]]>
+	 </select>
+ </statement>

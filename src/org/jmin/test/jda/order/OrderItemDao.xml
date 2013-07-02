@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <statement space ="orderItem">
+ 	 <insert id ="insert" parameterClass="org.jmin.test.jda.order.OrderItem">
+		<![CDATA[insert into Order_Detail(orderNo,productNo,remark)values(#orderNo#,#productNo#,#remark#)]]>
+	 </insert>
+	 <select id ="selectListByOrder" parameterClass="String" resultClass="org.jmin.test.jda.order.OrderItem">
+		<![CDATA[select * from Order_Detail where orderNo=#orderNo#]]>
+	 </select>
+	 <select id ="selectListByProduct" parameterClass="String" resultClass="org.jmin.test.jda.order.OrderItem">
+		<![CDATA[select * from Order_Detail where productNo=#productNo#]]>
+	 </select>
+ </statement>

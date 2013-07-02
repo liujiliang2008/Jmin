@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<beans>
+ <bean id ="Bean1" class="org.jmin.test.ioc.property.Man">
+  <property name="name" value="Chris"/>
+  <property name="age"  value="28"/>
+ </bean>
+</beans>

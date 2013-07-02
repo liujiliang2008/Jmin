@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<beans>
+ <bean id ="Wife" class="org.jmin.test.ioc.bijection.Wife">
+  <property name="name" value="Summer"/>
+  <property name="husband" ref="Husband"/>
+ </bean>
+ <bean id ="Husband" class="org.jmin.test.ioc.bijection.Husband">
+   <property name="name" value="Chris"/>
+   <property name="wife" ref="Wife"/>
+ </bean>
+</beans>

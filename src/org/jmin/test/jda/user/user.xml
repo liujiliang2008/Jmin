@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<statement space ="user">
+		<parameterMap id="update2" class ="org.jmin.test.jda.user.User">
+		   <parameter property="sex"   javaType="string"  />
+		   <parameter property="name"  javaType="string"  />
+		</parameterMap>
+		
+		<parameterMap id="insert3" class ="org.jmin.test.jda.user.User">
+		   <parameter property="name"  javaType="string" />
+		   <parameter property="sex"   javaType="string" />
+		</parameterMap>
+		
+		<parameterMap id="param2" class ="org.jmin.test.jda.user.User">
+		   <parameter property="name" javaType="string" />
+		</parameterMap>
+		
+		<resultMap id="result1" class ="org.jmin.test.jda.user.User">
+		   <result property="name" column="NAME" javaType="string" /> 
+		   <result property="sex"  column="SEX"  javaType="string" /> 
+		</resultMap>
+		
+		<insert id ="Insert1">
+			<![CDATA[insert into USERINFO(name,sex)values('liao','Man')]]>
+		</insert>
+		<insert id ="Insert2" parameterClass="org.jmin.test.jda.user.User">
+			<![CDATA[insert into USERINFO(name,sex)values(#name#,#sex#)]]>
+		</insert>
+		<insert id ="Insert3" parameterMap="insert3">
+			<![CDATA[insert into USERINFO(name,sex)values(?,?)]]>
+		</insert>
+		
+		<update id ="Update1" parameterClass="org.jmin.test.jda.user.User">
+			<![CDATA[update USERINFO set sex= #sex# where name=#name#]]>
+		</update>
+		<update id ="Update2" parameterMap="update2">
+			<![CDATA[update USERINFO set sex=? where name=?]]>
+		</update>
+		
+		<delete id ="Delete1">
+			<![CDATA[delete from USERINFO where name='Liao']]>
+		</delete>
+		<delete id ="Delete2">
+			<![CDATA[delete from USERINFO where name=#{name}]]>
+		</delete>
+		<delete id ="Delete3">
+			<![CDATA[delete from USERINFO where name=#{name}]]>
+		</delete>
+		
+		<select id="find1"  resultMap="result1">
+			<![CDATA[select * from USERINFO where name =#{name}]]>
+		</select>
+		
+		<select id="find2" parameterClass="map">
+			<![CDATA[select name,sex from USERINFO]]>
+		</select>
+		
+		<select id="find3" resultMap="result1">
+			<![CDATA[select name, sex from USERINFO]]>
+		</select>
+		
+		<select id="find4" resultMap="result1" parameterClass="Map" >
+			 <![CDATA[select name, sex from USERINFO where
+			  <choose>
+			     <when test="name !=null && name.trim()==''">name=#{name}</when>
+			     <when test="sex !=null  && sex.trim() !=''"> and name=#{name} and sex=#{sex}</when>
+			     <otherwise> and sex=#{sex}</otherwise>
+			   </choose>
+		      ]]>
+		</select>
+	</statement>
